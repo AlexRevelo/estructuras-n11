@@ -247,9 +247,15 @@ public class Categoria implements Serializable
 		for ( int i = 0; i <subCategorias.size(); i++)
     	{
     		Categoria hijo = (Categoria)subCategorias.get(i);
-    		if()
+    		if(hijo.codigoCompuesto.equalsIgnoreCase(codigoCateg))
     		{
-    			
+    			if(hijo.esHoja() && hijo.tieneLibrosRepetidos())
+    			{
+    				subCategorias.remove(i);
+    				return;
+    			}
+    			else
+    				throw new BibliotecaException("Categoria no existe");
     		}
     	}
 	}
@@ -291,6 +297,20 @@ public class Categoria implements Serializable
 			int anioPublicacion, String editorial, int numPaginas) throws BibliotecaException
 	{
         //TODO Completar según la documentación del método
+		
+		for (int i = 0;i<libros.size();i++)
+		{
+			Categoria hijo = (Categoria)subCategorias.get(i);
+			if(buscarLibro(isbn)!=null || hijo.esHoja()==false)
+			{
+				throw new BibliotecaException("Categoria no existe");
+			}
+			else 
+			{
+				Libro nuevo = new Libro(isbn, nombre, autores, anioPublicacion, editorial, numPaginas);
+				libros.add(nuevo);
+			}
+		}
 	}
 	
 	
