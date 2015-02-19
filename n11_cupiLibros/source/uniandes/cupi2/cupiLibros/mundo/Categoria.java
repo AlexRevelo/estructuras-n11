@@ -327,6 +327,16 @@ public class Categoria implements Serializable
 	public void eliminarLibro(String codigoCateg, String isbn) throws BibliotecaException
 	{
         //TODO Completar según la documentación del método
+		Categoria categ  =null;
+		String catego = categ.darCodigoCompuesto();
+		
+		if (catego.equals(codigoCateg)&& buscarLibro(isbn)!= null)//preguntar
+		{
+			libros.remove(isbn);
+		}
+		else 
+			throw new BibliotecaException("Categoria o libro no existe");
+		
 
 	}	
 	
@@ -338,6 +348,10 @@ public class Categoria implements Serializable
 	public int darNumCategorias()
 	{
         //TODO Completar según la documentación del método
+		int numeroCategorias = 0;
+		
+		
+		return numeroCategorias;
 
 	}
 	
@@ -349,6 +363,8 @@ public class Categoria implements Serializable
 	public int darNumLibros()
 	{
         //TODO Completar según la documentación del método
+				
+		return libros.size();
 
 	}
 	
@@ -401,6 +417,13 @@ public class Categoria implements Serializable
 	public void buscarCategoriasPreorden( ArrayList listaCategorias )
     {
         //TODO Completar según la documentación del método
+		
+		listaCategorias.add(codigoCompuesto);
+		for(int i =0; i<subCategorias.size();i++)
+		{
+			Categoria catego=(Categoria) subCategorias.get(i);
+			catego.buscarCategoriasPreorden(listaCategorias);
+		}
 
     }
 	
@@ -413,6 +436,7 @@ public class Categoria implements Serializable
 	public void buscarCategoriasPostorden( ArrayList listaCategorias )
     {
         //TODO Completar según la documentación del método
+		
 
     }
 	

@@ -119,6 +119,8 @@ public class Biblioteca
 	public void eliminarCategoria(String codigoCateg) throws BibliotecaException
 	{
         //TODO Completar según la documentación del método
+		Categoria padre = categoriaRaiz
+		if (categoriaRaiz.bu)
 
 	}
 	
