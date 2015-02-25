@@ -348,8 +348,13 @@ public class Categoria implements Serializable
 	public int darNumCategorias()
 	{
         //TODO Completar según la documentación del método
-		int numeroCategorias = 0;
 		
+		int numeroCategorias = 0;
+		for( int i = 0; i < subCategorias.size( ); i++ )
+        {
+            Categoria c = ( Categoria ) subCategorias.get( i );
+            numeroCategorias += (c.esHoja()) ? 1: c.darNumCategorias();
+        }
 		
 		return numeroCategorias;
 
@@ -436,7 +441,12 @@ public class Categoria implements Serializable
 	public void buscarCategoriasPostorden( ArrayList listaCategorias )
     {
         //TODO Completar según la documentación del método
-		
+		for(int i =0; i<subCategorias.size();i++)
+		{
+			Categoria catego=(Categoria) subCategorias.get(i);
+			catego.buscarCategoriasPreorden(listaCategorias);
+		}
+		listaCategorias.add(codigoCompuesto);
 
     }
 	
